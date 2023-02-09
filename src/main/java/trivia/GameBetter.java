@@ -2,28 +2,30 @@ package trivia;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
 
 // REFACTOR ME
 public class GameBetter implements IGame {
-   ArrayList players = new ArrayList();
-   int[] places = new int[6];
-   int[] purses = new int[6];
-   boolean[] inPenaltyBox = new boolean[6];
+   private final List<String> players = new ArrayList<>();
+   private final int[] places = new int[6];
+   private final int[] purses = new int[6];
+   private final boolean[] inPenaltyBox = new boolean[6];
 
-   LinkedList popQuestions = new LinkedList();
-   LinkedList scienceQuestions = new LinkedList();
-   LinkedList sportsQuestions = new LinkedList();
-   LinkedList rockQuestions = new LinkedList();
+   private final Queue<String> popQuestions = new LinkedList<>();
+   private final Queue<String> scienceQuestions = new LinkedList<>();
+   private final Queue<String> sportsQuestions = new LinkedList<>();
+   private final Queue<String> rockQuestions = new LinkedList<>();
 
-   int currentPlayer = 0;
-   boolean isGettingOutOfPenaltyBox;
+   private int currentPlayer = 0;
+   private boolean isGettingOutOfPenaltyBox;
 
    public GameBetter() {
       for (int i = 0; i < 50; i++) {
-         popQuestions.addLast("Pop Question " + i);
-         scienceQuestions.addLast(("Science Question " + i));
-         sportsQuestions.addLast(("Sports Question " + i));
-         rockQuestions.addLast(createRockQuestion(i));
+         popQuestions.add("Pop Question " + i);
+         scienceQuestions.add(("Science Question " + i));
+         sportsQuestions.add(("Sports Question " + i));
+         rockQuestions.add(createRockQuestion(i));
       }
    }
 
@@ -88,13 +90,13 @@ public class GameBetter implements IGame {
 
    private void askQuestion() {
       if (currentCategory() == "Pop")
-         System.out.println(popQuestions.removeFirst());
+         System.out.println(popQuestions.remove());
       if (currentCategory() == "Science")
-         System.out.println(scienceQuestions.removeFirst());
+         System.out.println(scienceQuestions.remove());
       if (currentCategory() == "Sports")
-         System.out.println(sportsQuestions.removeFirst());
+         System.out.println(sportsQuestions.remove());
       if (currentCategory() == "Rock")
-         System.out.println(rockQuestions.removeFirst());
+         System.out.println(rockQuestions.remove());
    }
 
 
