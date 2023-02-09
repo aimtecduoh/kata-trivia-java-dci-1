@@ -85,29 +85,31 @@ public class GameBetter implements IGame {
    }
 
    private void askQuestion() {
-      if (currentCategory() == "Pop")
+      if (QuestionType.POP.equals(currentCategory()))
          System.out.println(popQuestions.remove());
-      if (currentCategory() == "Science")
+      if (QuestionType.SCIENCE.equals(currentCategory()))
          System.out.println(scienceQuestions.remove());
-      if (currentCategory() == "Sports")
+      if (QuestionType.SPORTS.equals(currentCategory()))
          System.out.println(sportsQuestions.remove());
-      if (currentCategory() == "Rock")
+      if (QuestionType.ROCK.equals(currentCategory()))
          System.out.println(rockQuestions.remove());
    }
 
 
-   private String currentCategory() {
-      int currentPlayerPosition = players.get(currentPlayerIndex).getPosition();
-      if (currentPlayerPosition == 0) return "Pop";
-      if (currentPlayerPosition == 4) return "Pop";
-      if (currentPlayerPosition == 8) return "Pop";
-      if (currentPlayerPosition == 1) return "Science";
-      if (currentPlayerPosition == 5) return "Science";
-      if (currentPlayerPosition == 9) return "Science";
-      if (currentPlayerPosition == 2) return "Sports";
-      if (currentPlayerPosition == 6) return "Sports";
-      if (currentPlayerPosition == 10) return "Sports";
-      return "Rock";
+   private QuestionType currentCategory() {
+      int currentPlayerPositionModulo = players.get(currentPlayerIndex).getPosition() % 4;
+      switch (currentPlayerPositionModulo) {
+         case 0:
+            return QuestionType.POP;
+         case 1:
+            return QuestionType.SCIENCE;
+         case 2:
+            return QuestionType.SPORTS;
+         case 3:
+            return QuestionType.ROCK;
+         default:
+            throw new ModuloOutOfBoundException("NOOO WAY!!!!");
+      }
    }
 
    public boolean wasCorrectlyAnswered() {
