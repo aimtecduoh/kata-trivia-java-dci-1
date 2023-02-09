@@ -20,7 +20,7 @@ public class PlayGame {
       IGame aGame = new Game();
 
       for (int i = 1; i <= playerCount; i++) {
-         System.out.print("Player "+i+" name: ");
+         System.out.println("Player "+i+" name: ");
          String playerName = scanner.nextLine();
          aGame.add(playerName);
       }
@@ -33,7 +33,7 @@ public class PlayGame {
          int roll = readRoll();
          aGame.roll(roll);
 
-         System.out.print(">> Was the answer correct? [y/n] ");
+         System.out.println(">> Was the answer correct? [y/n] ");
          boolean correct = readYesNo();
          if (correct) {
             notAWinner = aGame.wasCorrectlyAnswered();
@@ -55,7 +55,7 @@ public class PlayGame {
    }
 
    private static int readRoll() {
-      System.out.print(">> Throw a die and input roll, or [ENTER] to generate a random roll: ");
+      System.out.println(">> Throw a die and input roll, or [ENTER] to generate a random roll: ");
       String rollStr = scanner.nextLine().trim();
       if (rollStr.isEmpty()) {
          int roll = new Random().nextInt(6) + 1;
